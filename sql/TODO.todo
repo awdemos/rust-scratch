@@ -1,0 +1,21 @@
+create table schema, read and write data:
+  ✔ create table schema @done(24-10-23 13:49)
+  ✔ read data @done(24-10-23 13:49)
+  ✔ write data @done(24-10-23 13:49)
+
+parse json string to/from struct:
+  ✔ store raw json string in table @done(24-10-23 13:49)
+  ✔ parse json string to struct @done(24-10-23 13:49)
+
+write and read files to/from table:
+  ✔ read a file into bytes @done(24-10-24 10:23)
+  ✔ write the bytes into a table @done(24-10-24 10:23)
+  ✔ read the bytes from the table @done(24-10-24 10:23)
+
+explore diesel:
+  ☐ how to work with database migrations
+  ☐ how to work with generated RUST / SQL mapping
+
+explore sqlx:
+  ☐ how to work with database migrations
+  ☐ how to work with generated RUST / SQL mapping

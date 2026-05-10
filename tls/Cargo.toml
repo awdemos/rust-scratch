@@ -1,0 +1,53 @@
+[package]
+name = "tls"
+version = "0.1.0"
+edition = "2021"
+
+# Mark the `check-certs` binary as the default.
+default-run = "check-certs"
+
+[[bin]]
+name = "check-certs"
+path = "src/bin/check-certs.rs"
+
+[[bin]]
+name = "gen-certs"
+path = "src/bin/gen-certs.rs"
+
+[[bin]]
+name = "server"
+path = "src/bin/server.rs"
+
+[[bin]]
+name = "client"
+path = "src/bin/client.rs"
+
+[dependencies]
+# TLS dependencies.
+rustls = "0.23.26"
+tokio-rustls = "0.26.2"
+rustls-pemfile = "2.2.0"
+
+# Tokio dependencies.
+tokio = { version = "1.44.2", features = ["full"] }
+
+# Tokio tracing dependencies.
+tracing = "0.1.41"
+
+# Error handling.
+miette = "7.5.0"
+
+# Terminal color output.
+crossterm = "0.29.0"
+
+# Strum dependencies.
+strum = "0.27.1"
+strum_macros = "0.27.1"
+
+# R3BL awesomeness.
+r3bl_tui = { git = "https://github.com/r3bl-org/r3bl-open-core.git", branch = "main", package = "r3bl_tui" }
+# r3bl_tui = { path = "/home/nazmul/github/r3bl-open-core/tui" } # Local path to the r3bl_tui crate.
+futures-util = "0.3.31" # Async streams.
+
+# For smallstr & smallvec.
+smallvec = { version = "1.15.0", features = ["serde"] }

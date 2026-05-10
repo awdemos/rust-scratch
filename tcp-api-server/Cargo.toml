@@ -1,0 +1,72 @@
+[package]
+name = "tcp-api-server"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# R3BL awesomeness.
+r3bl_tui = { git = "https://github.com/r3bl-org/r3bl-open-core.git", branch = "main", package = "r3bl_tui" }
+# r3bl_tui = { path = "/home/nazmul/github/r3bl-open-core/tui" } # Local path to the r3bl_tui crate.
+
+# Command line argument parsing.
+clap = { version = "4.5.37", features = ["derive"] }
+color-print = "0.3.7"
+
+# Serde for serialization and deserialization support.
+serde = { version = "1.0.219", features = ["derive"] }
+
+# For smallstr & smallvec.
+smallvec = { version = "1.15.0", features = ["serde"] }
+
+# Enum to string generation.
+strum = "0.27.1"
+strum_macros = "0.27.1"
+
+# Key Value store that can be used to store JSON or bincode encoded values. `kv` is built
+# on top of `sled` which currently does not support access across multiple processes.
+kv = { version = "0.24.0", features = ["json-value", "bincode-value"] }
+
+# Error handling.
+miette = { version = "7.5.0", features = ["fancy"] }
+
+# Random numbers.
+rand = "0.9.1"
+
+# Tokio / Tracing / Logging / Testing / Utils.
+# https://tokio.rs/tokio/topics/tracing
+# https://tokio.rs/tokio/topics/tracing-next-steps
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
+tokio = { version = "1.44.2", features = ["full", "tracing"] }
+
+# Replacement for the default global allocator. This one is optimize for multi-threaded
+# use cases where lots of small objects are created and destroyed. The default
+# allocator is the system allocator that's optimized for single threaded use cases.
+# https://www.svix.com/blog/heap-fragmentation-in-rust-applications/
+# https://news.ycombinator.com/item?id=35473271
+# https://crates.io/crates/jemallocator
+[target.'cfg(not(target_env = "msvc"))'.dependencies]
+tikv-jemallocator = "0.6.0"
+
+# OTel, jaeger, tracing. Implements the types defined in the Otel spec# ⚠️ NOTE ⚠️
+# DO NOT UPDATE TO THE LATEST VERSION OF THE FOLLOWING CRATES YET THERE ARE
+# SOME INCOMPATIBILITIES WITH THE LATEST VERSIONS (0.24.0, etc)
+# Run: `docker run -d -p16686:16686 -p4317:4317 -e COLLECTOR_OTLP_ENABLED=true jaegertracing/all-in-one:latest`
+# Open: http://localhost:16686/search
+# Example: https://github.com/open-telemetry/opentelemetry-rust/blob/main/examples/tracing-jaeger/src/main.rs
+# OpenTelemetry’s API-level view of tracing, spans, etc.
+opentelemetry = { version = "0.22.0" }
+# Implements the OpenTelemetry APIs.
+opentelemetry_sdk = { version = "0.22.1", features = ["rt-tokio"] }
+# The OTel protocol (OTLP) implementation to export data to Jaeger or some other backend.
+# tonic is a gRPC crate.
+opentelemetry-otlp = { version = "0.15.0", features = ["tonic"] }
+# Integration between the tracing crate and the opentelemetry crate.
+tracing-opentelemetry = "0.23.0"
+# Standardized naming patterns for OpenTelemetry things.
+opentelemetry-semantic-conventions = "0.14.0"
+
+[dev-dependencies]
+tempfile = "3.19.1"

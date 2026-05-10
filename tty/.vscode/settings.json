@@ -1,0 +1,28 @@
+{
+  "cSpell.words": [
+    "baeldung",
+    "bincode",
+    "consts",
+    "epoll",
+    "killall",
+    "libc",
+    "nbaz",
+    "nohup",
+    "POSIX",
+    "procspawn",
+    "rustix",
+    "sigaction",
+    "SIGCHLD",
+    "SIGCONT",
+    "SIGPIPE",
+    "SIGSTOP",
+    "SIGTSTP",
+    "SIGTTIN",
+    "SIGTTOU",
+    "SIGWINCH",
+    "subshell",
+    "subshells",
+    "UART",
+    "Userland"
+  ]
+}
